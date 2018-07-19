@@ -75,6 +75,8 @@ extension LocationSearchTable {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = matchingItems[indexPath.row].placemark
         mainVC?.navModel.location = selectedItem.location
+        mainVC?.navModel.name = selectedItem.name!
+        mainVC?.updateLocationName(name: (mainVC?.navModel.name)!)
         mapVC?.endPin = selectedItem
         mapVC?.dropPinZoomIn()
         dismiss(animated: true, completion: nil)

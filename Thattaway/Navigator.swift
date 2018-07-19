@@ -10,28 +10,35 @@ import Foundation
 import MapKit
 import UIKit
 import CoreLocation
+import GooglePlaces
 
 class Navigator {
     var error : NSError!
     var latitude = 0.0
     var longitude = 0.0
     var bearing = 0.0
+    var placesClient : GMSPlacesClient!
+    var likelyPlaces: [GMSPlace] = []
+    var name = " "
+    
     var location : CLLocation? {
         didSet{
             latitude = (location?.coordinate.latitude)!
             longitude = (location?.coordinate.longitude)!
             initDistance = nil
-            findBestLocation(near: location!)
+            //findBestLocation(near: location!)
         }
     }
     var initDistance : Double?
     var bestLocation : CLLocation?
     
-    private func findBestLocation(near location: CLLocation) {
+    
+    // unsure what this was used for, I think before I used google places
+    /*private func findBestLocation(near location: CLLocation) {
         let request = MKLocalSearchRequest()
         let coorSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         request.region = MKCoordinateRegion(center: location.coordinate, span: coorSpan)
-        request.naturalLanguageQuery = "Restaurant"
+        //request.naturalLanguageQuery = "Restaurant"
         let search = MKLocalSearch(request: request)
         search.start {
             (response: MKLocalSearchResponse!, error: Error?) in
@@ -43,7 +50,7 @@ class Navigator {
                 //println("Longitude = \(item.placemark.location.coordinate.longitude)")
             }
         }
-    }
+    }*/
     
     func getDistance(destination: CLLocation) -> Double {
         let latDiff = destination.coordinate.latitude - latitude
@@ -53,6 +60,43 @@ class Navigator {
             cos(latitude) * cos(destination.coordinate.latitude) *
             sin(longDiff/2) * sin(longDiff/2)
         return(2 * atan2(sqrt(a), sqrt(1-a)))
+    }
+    
+    func findRatedLocation() {
+        placesClient = GMSPlacesClient.shared()
+        
+        placesClient.currentPlace(callback: { (placeLikelihoods, error) -> Void in
+            if let error = error {
+                // Handle the error.
+                print("Current Place error: \(error.localizedDescription)")
+                return
+            }
+            
+            // TODO: figure out how "local" local places are and if it's modifiable
+            
+            // Get likely places and add to the list.
+            if let likelihoodList = placeLikelihoods {
+                for likelihood in likelihoodList.likelihoods {
+                    let place = likelihood.place
+                    self.likelyPlaces.append(place)
+                }
+            }
+            
+            // now pick the highest rated one
+            var maxRating : Float = -1.0
+            var maxIndex = -1
+            for index in self.likelyPlaces.indices {
+                if (self.likelyPlaces[index].rating > maxRating) && !(self.likelyPlaces[index].coordinate.latitude == self.latitude && self.likelyPlaces[index].coordinate.longitude == self.longitude) {
+                    maxRating = self.likelyPlaces[index].rating
+                    maxIndex = index
+                }
+            }
+            
+            if maxIndex != -1 {
+                self.location = CLLocation(latitude: self.likelyPlaces[maxIndex].coordinate.latitude, longitude: self.likelyPlaces[maxIndex].coordinate.longitude)
+                self.name = self.likelyPlaces[maxIndex].name
+            }
+        })
     }
     
 }

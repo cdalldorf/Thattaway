@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25A59DB5FA352FB9661EC7D2 /* libPods-Thattaway.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 022CE19F6470C61D2938F2D5 /* libPods-Thattaway.a */; };
 		5F71D1FA20DA061A007D16E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F71D1F920DA061A007D16E6 /* AppDelegate.swift */; };
 		5F71D1FC20DA061A007D16E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F71D1FB20DA061A007D16E6 /* ViewController.swift */; };
 		5F71D1FF20DA061A007D16E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F71D1FD20DA061A007D16E6 /* Main.storyboard */; };
 		5F71D20120DA061C007D16E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F71D20020DA061C007D16E6 /* Assets.xcassets */; };
 		5F71D20420DA061C007D16E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F71D20220DA061C007D16E6 /* LaunchScreen.storyboard */; };
 		5F71D20F20DA061C007D16E6 /* ThattawayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F71D20E20DA061C007D16E6 /* ThattawayTests.swift */; };
+		5F71D21A20DA0721007D16E6 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F71D21920DA0721007D16E6 /* Arrow.swift */; };
+		5FB8A16020DA7B33004A7EAE /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8A15F20DA7B33004A7EAE /* Navigator.swift */; };
+		5FB8A16220DA8A8E004A7EAE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8A16120DA8A8E004A7EAE /* MapViewController.swift */; };
+		5FB8A16420DA8DDD004A7EAE /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8A16320DA8DDD004A7EAE /* LocationSearchTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		022CE19F6470C61D2938F2D5 /* libPods-Thattaway.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Thattaway.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		444C32A4FBD072D8ECB103A5 /* Pods-Thattaway.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thattaway.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Thattaway/Pods-Thattaway.debug.xcconfig"; sourceTree = "<group>"; };
+		50EDC951AFD2F56C1CFB3414 /* Pods-Thattaway.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thattaway.release.xcconfig"; path = "Pods/Target Support Files/Pods-Thattaway/Pods-Thattaway.release.xcconfig"; sourceTree = "<group>"; };
 		5F71D1F620DA061A007D16E6 /* Thattaway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thattaway.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F71D1F920DA061A007D16E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F71D1FB20DA061A007D16E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +44,10 @@
 		5F71D20A20DA061C007D16E6 /* ThattawayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThattawayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F71D20E20DA061C007D16E6 /* ThattawayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThattawayTests.swift; sourceTree = "<group>"; };
 		5F71D21020DA061C007D16E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F71D21920DA0721007D16E6 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
+		5FB8A15F20DA7B33004A7EAE /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		5FB8A16120DA8A8E004A7EAE /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		5FB8A16320DA8DDD004A7EAE /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25A59DB5FA352FB9661EC7D2 /* libPods-Thattaway.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +75,8 @@
 				5F71D1F820DA061A007D16E6 /* Thattaway */,
 				5F71D20D20DA061C007D16E6 /* ThattawayTests */,
 				5F71D1F720DA061A007D16E6 /* Products */,
+				732F920CBC7D15745BB804CD /* Frameworks */,
+				EDDCE44852016EA29E059FEA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,11 +92,14 @@
 		5F71D1F820DA061A007D16E6 /* Thattaway */ = {
 			isa = PBXGroup;
 			children = (
-				5F71D1F920DA061A007D16E6 /* AppDelegate.swift */,
+				5F71D21C20DA09C0007D16E6 /* Supporting Files */,
 				5F71D1FB20DA061A007D16E6 /* ViewController.swift */,
 				5F71D1FD20DA061A007D16E6 /* Main.storyboard */,
+				5FB8A16320DA8DDD004A7EAE /* LocationSearchTable.swift */,
+				5FB8A16120DA8A8E004A7EAE /* MapViewController.swift */,
+				5FB8A15F20DA7B33004A7EAE /* Navigator.swift */,
+				5F71D21920DA0721007D16E6 /* Arrow.swift */,
 				5F71D20020DA061C007D16E6 /* Assets.xcassets */,
-				5F71D20220DA061C007D16E6 /* LaunchScreen.storyboard */,
 				5F71D20520DA061C007D16E6 /* Info.plist */,
 			);
 			path = Thattaway;
@@ -96,6 +114,32 @@
 			path = ThattawayTests;
 			sourceTree = "<group>";
 		};
+		5F71D21C20DA09C0007D16E6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5F71D1F920DA061A007D16E6 /* AppDelegate.swift */,
+				5F71D20220DA061C007D16E6 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		732F920CBC7D15745BB804CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				022CE19F6470C61D2938F2D5 /* libPods-Thattaway.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EDDCE44852016EA29E059FEA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				444C32A4FBD072D8ECB103A5 /* Pods-Thattaway.debug.xcconfig */,
+				50EDC951AFD2F56C1CFB3414 /* Pods-Thattaway.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,9 +147,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F71D21320DA061C007D16E6 /* Build configuration list for PBXNativeTarget "Thattaway" */;
 			buildPhases = (
+				D3D4FD9E387B0EB346CC33F8 /* [CP] Check Pods Manifest.lock */,
 				5F71D1F220DA061A007D16E6 /* Sources */,
 				5F71D1F320DA061A007D16E6 /* Frameworks */,
 				5F71D1F420DA061A007D16E6 /* Resources */,
+				1EE942EB686C8C005CC9A09D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -192,13 +238,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1EE942EB686C8C005CC9A09D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Thattaway/Pods-Thattaway-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Thattaway/Pods-Thattaway-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3D4FD9E387B0EB346CC33F8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Thattaway-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5F71D1F220DA061A007D16E6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				5F71D1FC20DA061A007D16E6 /* ViewController.swift in Sources */,
+				5FB8A16020DA7B33004A7EAE /* Navigator.swift in Sources */,
 				5F71D1FA20DA061A007D16E6 /* AppDelegate.swift in Sources */,
+				5FB8A16420DA8DDD004A7EAE /* LocationSearchTable.swift in Sources */,
+				5FB8A16220DA8A8E004A7EAE /* MapViewController.swift in Sources */,
+				5F71D21A20DA0721007D16E6 /* Arrow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,14 +449,17 @@
 		};
 		5F71D21420DA061C007D16E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 444C32A4FBD072D8ECB103A5 /* Pods-Thattaway.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HJB4W8UKGB;
 				INFOPLIST_FILE = Thattaway/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = dallcode.Thattaway;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -373,14 +469,17 @@
 		};
 		5F71D21520DA061C007D16E6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50EDC951AFD2F56C1CFB3414 /* Pods-Thattaway.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HJB4W8UKGB;
 				INFOPLIST_FILE = Thattaway/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = dallcode.Thattaway;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

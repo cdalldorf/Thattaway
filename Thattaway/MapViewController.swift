@@ -54,6 +54,11 @@ internal class MapViewController : UIViewController {
         definesPresentationContext = true
         
         locationSearchTable.mapView = MapView
+        
+        // drop a pin if there already was one
+        if let annotation = mainVC?.pin {
+            MapView.addAnnotation(annotation)
+        }
     }
     
     func dropPinZoomIn(){
@@ -61,7 +66,7 @@ internal class MapViewController : UIViewController {
         MapView.removeAnnotations(MapView.annotations)
         let annotation = MKPointAnnotation()
         annotation.coordinate = (endPin?.coordinate)!
-        annotation.title = endPin?.name
+        annotation.title = endPin?.name ?? "uh oh"
         if let city = endPin?.locality,
             let state = endPin?.administrativeArea {
             annotation.subtitle = "\(city) \(state)"
@@ -70,5 +75,6 @@ internal class MapViewController : UIViewController {
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake((endPin?.coordinate)!, span)
         MapView.setRegion(region, animated: true)
+        mainVC?.pin = endPin
     }
 }

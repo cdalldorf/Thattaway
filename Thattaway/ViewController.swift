@@ -13,19 +13,36 @@ import MapKit
 class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
+    var pin : MKPlacemark?
+    
     var location : CLLocation?
     
     var location2d : CLLocation?
     
     let navModel = Navigator()
 
+    @IBOutlet weak var nameSwitch: UISwitch!
+    
+    @IBAction func toggleNameShow(_ sender: UISwitch) {
+        updateLocationName(name: navModel.name)
+    }
+    
     @IBAction func moveToMap(_ sender: Any) {
         
     }
     
     @IBAction func suggestLocation(_ sender: UIButton) {
+        navModel.findRatedLocation()
+        updateLocationName(name: navModel.name)
     }
     
+    @IBOutlet weak var targetName: UILabel!
+    
+    func updateLocationName(name: String) {
+        if (targetName != nil) {
+            targetName.text = nameSwitch.isOn ? navModel.name : " "
+        }
+    }
     
     @IBOutlet weak var arrowView: Arrow!
         
