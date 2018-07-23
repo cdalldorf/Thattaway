@@ -100,6 +100,7 @@
                         <outlet property="arrowView" destination="iCm-aV-y3H" id="dhu-5G-QHF"/>
                         <outlet property="foundPlaceLabel" destination="hC2-Sr-IjR" id="ebe-ZP-eKB"/>
                         <outlet property="nameSwitch" destination="F9s-pJ-Cvr" id="EU2-a3-N93"/>
+                        <outlet property="suggestLocationButton" destination="tjk-4N-D8Y" id="h4f-wN-nif"/>
                         <outlet property="targetName" destination="YeI-Xl-ZIK" id="Y5v-7R-0nG"/>
                         <outlet property="typeButton" destination="nrV-Ja-ApS" id="I0c-Cr-Ict"/>
                     </connections>

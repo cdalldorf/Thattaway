@@ -9,12 +9,15 @@
 import UIKit
 import MapKit
 
+protocol SearchDelegate : class {
+    func searchCompleted(endpin: MKPlacemark)
+}
+
 class LocationSearchTable : UITableViewController {
     var handleMapSearchDelegate:HandleMapSearch? = nil
     var matchingItems:[MKMapItem] = []
     weak var mapView: MKMapView? = nil
-    var mainVC : ViewController?
-    weak var mapVC : MapViewController?
+    var delegate : SearchDelegate?
     
     func parseAddress(selectedItem:MKPlacemark) -> String {
         // put a space between "4" and "Melrose Place"
@@ -74,11 +77,8 @@ extension LocationSearchTable {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = matchingItems[indexPath.row].placemark
-        mainVC?.navModel.location = selectedItem.location
-        mainVC?.navModel.name = selectedItem.name!
-        mainVC?.updateLocationName(name: (mainVC?.navModel.name)!)
-        mapVC?.endPin = selectedItem
-        mapVC?.dropPinZoomIn()
+        delegate?.searchCompleted(endpin: selectedItem)
+ 
         dismiss(animated: true, completion: nil)
     }
     

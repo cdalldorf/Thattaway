@@ -8,11 +8,16 @@
 
 import UIKit
 
-var types = ["restaurant", "bar", "store"]
+var types = ["any", "restaurant", "bar", "cafe", "store", "zoo", "supermarket", "shopping_mall", "school", "pharmacy", "parking", "night_club", "museum", "movie_theater", "spa", "atm", "amusement_park", "convenience_store", "book_store", "clothing_store", "doctor", "electronics_store", "furniture_store", "home_goods_store"]
 
+protocol TypeTableDelegate: class {
+    func typeUpdated(type: String)
+}
 
 class TypeTableViewController: UITableViewController {
     var mainVC : ViewController?
+    
+    var delegate : TypeTableDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +55,7 @@ class TypeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        mainVC?.type = types[indexPath.row]
-        mainVC?.typeButton.setTitle(types[indexPath.row], for: .normal)
+        delegate?.typeUpdated(type: types[indexPath.row])
         dismiss(animated: true, completion: nil)
     }
 

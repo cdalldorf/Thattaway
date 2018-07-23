@@ -95,15 +95,15 @@
 			isa = PBXGroup;
 			children = (
 				5F71D21C20DA09C0007D16E6 /* Supporting Files */,
-				5F71D1FB20DA061A007D16E6 /* ViewController.swift */,
 				5F71D1FD20DA061A007D16E6 /* Main.storyboard */,
-				5FB8A16320DA8DDD004A7EAE /* LocationSearchTable.swift */,
-				5FB8A16120DA8A8E004A7EAE /* MapViewController.swift */,
-				5FB8A15F20DA7B33004A7EAE /* Navigator.swift */,
 				5F71D21920DA0721007D16E6 /* Arrow.swift */,
-				5F71D20020DA061C007D16E6 /* Assets.xcassets */,
-				5F71D20520DA061C007D16E6 /* Info.plist */,
+				5F71D1FB20DA061A007D16E6 /* ViewController.swift */,
+				5FB8A15F20DA7B33004A7EAE /* Navigator.swift */,
+				5FB8A16120DA8A8E004A7EAE /* MapViewController.swift */,
+				5FB8A16320DA8DDD004A7EAE /* LocationSearchTable.swift */,
 				5F88B632210639D20059E249 /* TypeTableViewController.swift */,
+				5F71D20520DA061C007D16E6 /* Info.plist */,
+				5F71D20020DA061C007D16E6 /* Assets.xcassets */,
 			);
 			path = Thattaway;
 			sourceTree = "<group>";

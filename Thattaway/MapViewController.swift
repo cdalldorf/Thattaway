@@ -6,6 +6,8 @@
 //  Copyright © 2018 Chris Dalldorf. All rights reserved.
 //
 
+// TODO: change everything to delegate stuff
+
 import UIKit
 import MapKit
 
@@ -13,33 +15,35 @@ protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
 }
 
+protocol MapDelegate: class {
+    func mapUpdated(annotation: MKPointAnnotation)
+}
+
 internal class MapViewController : UIViewController {
-    var endPin:MKPlacemark? = nil {
-        didSet {
-            
-        }
-    }
-    
+    var endPin:MKPlacemark? = nil
+    var delegate : MapDelegate?
     @IBOutlet weak var MapView: MKMapView!
-    
-    var mainVC : ViewController?
-    
     var location : CLLocation?
-    
-    var navModel : Navigator?
-    
     var resultSearchController : UISearchController? = nil
+    var annotation : MKPointAnnotation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegion(center: (self.location?.coordinate)!, span: span)
-        MapView.setRegion(region, animated: true)
+        if annotation != nil {
+            // an annotation exists, make initial map include both
+            let span = MKCoordinateSpan(latitudeDelta: abs((annotation?.coordinate.latitude)! - (location?.coordinate.latitude)!) + 0.05, longitudeDelta: abs((annotation?.coordinate.longitude)! - (location?.coordinate.longitude)!) + 0.05)
+            let middle = CLLocationCoordinate2D(latitude: 0.5 * ((annotation?.coordinate.latitude)! + (location?.coordinate.latitude)!), longitude: 0.5 * ((annotation?.coordinate.longitude)! + (location?.coordinate.longitude)!))
+            let region = MKCoordinateRegionMake(middle, span)
+            MapView.setRegion(region, animated: true)
+        } else {
+            let span = MKCoordinateSpanMake(0.05, 0.05)
+            let region = MKCoordinateRegion(center: (self.location?.coordinate)!, span: span)
+            MapView.setRegion(region, animated: true)
+        }
         
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
-        locationSearchTable.mainVC = mainVC
-        locationSearchTable.mapVC = self
+        locationSearchTable.delegate = self
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController?.searchResultsUpdater = locationSearchTable
         
@@ -56,8 +60,8 @@ internal class MapViewController : UIViewController {
         locationSearchTable.mapView = MapView
         
         // drop a pin if there already was one
-        if let annotation = mainVC?.navModel.annotation {
-            MapView.addAnnotation(annotation)
+        if annotation != nil {
+            MapView.addAnnotation(annotation!)
         }
     }
     
@@ -75,7 +79,19 @@ internal class MapViewController : UIViewController {
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake((endPin?.coordinate)!, span)
         MapView.setRegion(region, animated: true)
-        mainVC?.pin = endPin
-        mainVC?.navModel.annotation = annotation
+        
+        // transitioning to delegate
+        delegate?.mapUpdated(annotation: annotation)
     }
 }
+
+extension MapViewController: SearchDelegate {
+    func searchCompleted(endpin: MKPlacemark) {
+        self.endPin = endpin
+        dropPinZoomIn()
+    }
+}
+
+
+
+

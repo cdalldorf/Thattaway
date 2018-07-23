@@ -12,16 +12,10 @@ import MapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
-    
-    var pin : MKPlacemark?
-    
     var location : CLLocation?
-    
     var location2d : CLLocation?
-    
     let navModel = Navigator()
-    
-    var type = ""
+    var type = "any"
 
     @IBOutlet weak var nameSwitch: UISwitch!
     
@@ -30,15 +24,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBOutlet weak var typeButton: UIButton!
-    
     @IBOutlet weak var foundPlaceLabel: UILabel!
+    @IBOutlet weak var suggestLocationButton: UIButton!
     
     @IBAction func suggestLocation(_ sender: UIButton) {
+        sender.isEnabled = false
         navModel.findRatedLocation(typeRequested: type)
-        updateLocationName(name: navModel.name)
-        
-        // check to see if the location didn't change
-        foundPlaceLabel.text = navModel.changed ? "✔" : "𐄂"
     }
     
     @IBOutlet weak var targetName: UILabel!
@@ -49,11 +40,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    func updateView() {
+        updateLocationName(name: navModel.name)
+        foundPlaceLabel.text = navModel.changed ? "✔" : "𐄂"
+        typeButton.setTitle(type, for: .normal)
+        
+        // add other UI stuff here
+    }
+    
     @IBOutlet weak var arrowView: Arrow!
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after loading the view, typically from a nib
+        navModel.location = CLLocation(latitude: 90.0, longitude: 0.0)
         
         // setting up location stuff
         locationManager.delegate = self
@@ -61,6 +61,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.startUpdatingHeading()
+        
+        // delegate stuff
+        navModel.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -129,15 +132,39 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToMap" {
             if let nextViewController = segue.destination as? MapViewController {
-                nextViewController.location = self.location
-                nextViewController.navModel = navModel
-                nextViewController.mainVC = self
+                nextViewController.location = self.location!
+                nextViewController.annotation = self.navModel.annotation
+                nextViewController.delegate = self
+                
+                // TODO fully change to delegate stuff
             }
         } else if segue.identifier == "goToTypeSelection" {
             if let nextViewController = segue.destination as? TypeTableViewController {
-                nextViewController.mainVC = self
+                nextViewController.delegate = self
             }
         }
     }
-    
+}
+
+extension ViewController: NavigatorDelegate {
+    func dataUpdated() {
+        updateView()
+        suggestLocationButton.isEnabled = true
+    }
+}
+
+extension ViewController: TypeTableDelegate {
+    func typeUpdated(type: String) {
+        self.type = type
+        updateView()
+    }
+}
+
+extension ViewController: MapDelegate {
+    func mapUpdated(annotation: MKPointAnnotation) {
+        self.navModel.annotation = annotation
+        self.navModel.location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+        self.navModel.name = annotation.title!
+        self.updateLocationName(name: self.navModel.name)
+    }
 }

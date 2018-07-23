@@ -12,9 +12,13 @@ import UIKit
 import CoreLocation
 import GooglePlaces
 
+protocol NavigatorDelegate: class {
+    func dataUpdated()
+}
+
 class Navigator {
     var error : NSError!
-    var annotation = MKPointAnnotation()
+    var annotation : MKPointAnnotation?
     var latitude = 0.0
     var longitude = 0.0
     var bearing = 0.0
@@ -22,6 +26,8 @@ class Navigator {
     var placesClient : GMSPlacesClient!
     var likelyPlaces: [GMSPlace] = []
     var name = " "
+    weak var delegate : NavigatorDelegate?
+    
     
     var location : CLLocation? {
         didSet{
@@ -89,7 +95,7 @@ class Navigator {
             var maxIndex = -1
             self.changed = false
             for index in self.likelyPlaces.indices {
-                if (self.likelyPlaces[index].types.contains(typeRequested)) {
+                if (typeRequested == "any" || self.likelyPlaces[index].types.contains(typeRequested)) {
                     if (self.likelyPlaces[index].rating > maxRating) && !(self.likelyPlaces[index].coordinate.latitude == self.latitude && self.likelyPlaces[index].coordinate.longitude == self.longitude) {
                         maxRating = self.likelyPlaces[index].rating
                         maxIndex = index
@@ -101,9 +107,11 @@ class Navigator {
                 self.changed = true
                 self.location = CLLocation(latitude: self.likelyPlaces[maxIndex].coordinate.latitude, longitude: self.likelyPlaces[maxIndex].coordinate.longitude)
                 self.name = self.likelyPlaces[maxIndex].name
-                self.annotation.coordinate = CLLocationCoordinate2D(latitude: self.location!.coordinate.latitude, longitude: self.location!.coordinate.longitude)
-                self.annotation.title = self.name
+                self.annotation?.coordinate = CLLocationCoordinate2D(latitude: self.location!.coordinate.latitude, longitude: self.location!.coordinate.longitude)
+                self.annotation?.title = self.name
             }
+            
+            self.delegate?.dataUpdated()
         })
     }
     
