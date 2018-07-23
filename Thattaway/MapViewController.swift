@@ -56,7 +56,7 @@ internal class MapViewController : UIViewController {
         locationSearchTable.mapView = MapView
         
         // drop a pin if there already was one
-        if let annotation = mainVC?.pin {
+        if let annotation = mainVC?.navModel.annotation {
             MapView.addAnnotation(annotation)
         }
     }
@@ -76,5 +76,6 @@ internal class MapViewController : UIViewController {
         let region = MKCoordinateRegionMake((endPin?.coordinate)!, span)
         MapView.setRegion(region, animated: true)
         mainVC?.pin = endPin
+        mainVC?.navModel.annotation = annotation
     }
 }

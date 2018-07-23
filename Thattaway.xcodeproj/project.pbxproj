@@ -15,6 +15,7 @@
 		5F71D20420DA061C007D16E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F71D20220DA061C007D16E6 /* LaunchScreen.storyboard */; };
 		5F71D20F20DA061C007D16E6 /* ThattawayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F71D20E20DA061C007D16E6 /* ThattawayTests.swift */; };
 		5F71D21A20DA0721007D16E6 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F71D21920DA0721007D16E6 /* Arrow.swift */; };
+		5F88B633210639D20059E249 /* TypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F88B632210639D20059E249 /* TypeTableViewController.swift */; };
 		5FB8A16020DA7B33004A7EAE /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8A15F20DA7B33004A7EAE /* Navigator.swift */; };
 		5FB8A16220DA8A8E004A7EAE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8A16120DA8A8E004A7EAE /* MapViewController.swift */; };
 		5FB8A16420DA8DDD004A7EAE /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8A16320DA8DDD004A7EAE /* LocationSearchTable.swift */; };
@@ -45,6 +46,7 @@
 		5F71D20E20DA061C007D16E6 /* ThattawayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThattawayTests.swift; sourceTree = "<group>"; };
 		5F71D21020DA061C007D16E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F71D21920DA0721007D16E6 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
+		5F88B632210639D20059E249 /* TypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeTableViewController.swift; sourceTree = "<group>"; };
 		5FB8A15F20DA7B33004A7EAE /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		5FB8A16120DA8A8E004A7EAE /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5FB8A16320DA8DDD004A7EAE /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				5F71D21920DA0721007D16E6 /* Arrow.swift */,
 				5F71D20020DA061C007D16E6 /* Assets.xcassets */,
 				5F71D20520DA061C007D16E6 /* Info.plist */,
+				5F88B632210639D20059E249 /* TypeTableViewController.swift */,
 			);
 			path = Thattaway;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				5FB8A16420DA8DDD004A7EAE /* LocationSearchTable.swift in Sources */,
 				5FB8A16220DA8A8E004A7EAE /* MapViewController.swift in Sources */,
 				5F71D21A20DA0721007D16E6 /* Arrow.swift in Sources */,
+				5F88B633210639D20059E249 /* TypeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
