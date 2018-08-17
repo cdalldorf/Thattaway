@@ -30,8 +30,9 @@ internal class MapViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        // add an annotation if one exists
         if annotation != nil {
-            // an annotation exists, make initial map include both
             let span = MKCoordinateSpan(latitudeDelta: abs((annotation?.coordinate.latitude)! - (location?.coordinate.latitude)!) + 0.05, longitudeDelta: abs((annotation?.coordinate.longitude)! - (location?.coordinate.longitude)!) + 0.05)
             let middle = CLLocationCoordinate2D(latitude: 0.5 * ((annotation?.coordinate.latitude)! + (location?.coordinate.latitude)!), longitude: 0.5 * ((annotation?.coordinate.longitude)! + (location?.coordinate.longitude)!))
             let region = MKCoordinateRegionMake(middle, span)
@@ -41,6 +42,13 @@ internal class MapViewController : UIViewController {
             let region = MKCoordinateRegion(center: (self.location?.coordinate)!, span: span)
             MapView.setRegion(region, animated: true)
         }
+        
+        
+        // setting up ability to click on map
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(MapViewController.mapLongPress(_:))) // colon needs to pass through info
+        longPress.minimumPressDuration = 1.5 // in seconds
+        //add gesture recognition
+        MapView.addGestureRecognizer(longPress)
         
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
         locationSearchTable.delegate = self
@@ -79,6 +87,24 @@ internal class MapViewController : UIViewController {
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake((endPin?.coordinate)!, span)
         MapView.setRegion(region, animated: true)
+        
+        // transitioning to delegate
+        delegate?.mapUpdated(annotation: annotation)
+    }
+    
+    // func called when long press
+    @objc func mapLongPress(_ recognizer: UIGestureRecognizer) {
+        // first clear existing pins
+        MapView.removeAnnotations(MapView.annotations)
+        
+        // add our new pin
+        let touchedAt = recognizer.location(in: self.MapView) // adds the location on the view it was pressed
+        let touchedAtCoordinate : CLLocationCoordinate2D = MapView.convert(touchedAt, toCoordinateFrom: self.MapView) // will get coordinates
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = touchedAtCoordinate
+        annotation.title = "Custom Destination"
+        MapView.addAnnotation(annotation)
         
         // transitioning to delegate
         delegate?.mapUpdated(annotation: annotation)

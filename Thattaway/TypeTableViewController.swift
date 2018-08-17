@@ -14,9 +14,7 @@ protocol TypeTableDelegate: class {
     func typeUpdated(type: String)
 }
 
-class TypeTableViewController: UITableViewController {
-    var mainVC : ViewController?
-    
+class TypeTableViewController: UITableViewController {   
     var delegate : TypeTableDelegate?
 
     override func viewDidLoad() {

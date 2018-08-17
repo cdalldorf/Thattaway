@@ -8,12 +8,14 @@
 
 import UIKit
 import MapKit
+import GooglePlaces
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var location : CLLocation?
     var location2d : CLLocation?
+    var userMemory: UserDefaults?
     let navModel = Navigator()
     var type = "any"
 
@@ -23,13 +25,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         updateLocationName(name: navModel.name)
     }
     
+    @IBOutlet weak var favButton: UIButton!
     @IBOutlet weak var typeButton: UIButton!
     @IBOutlet weak var foundPlaceLabel: UILabel!
     @IBOutlet weak var suggestLocationButton: UIButton!
     
     @IBAction func suggestLocation(_ sender: UIButton) {
         sender.isEnabled = false
-        navModel.findRatedLocation(typeRequested: type)
+        // commented out stuff was a way to create bounds on the search, but won't work as it will cost money
+        //let NEcoordinate = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)! + 0.05, longitude: (location?.coordinate.longitude)! + 0.05)
+        //let SWcoordinate = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)! - 0.05, longitude: (location?.coordinate.longitude)! - 0.05)
+        //let bounds = GMSCoordinateBounds(coordinate: NEcoordinate, coordinate: SWcoordinate)
+        navModel.findRatedLocation(typeRequested: type)//, bounds: bounds)
     }
     
     @IBOutlet weak var targetName: UILabel!
@@ -61,6 +68,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.startUpdatingHeading()
+        
+        // setting up memory
+        userMemory = UserDefaults.standard
+        if userMemory?.object(forKey: "favorites") == nil {
+            favButton.isEnabled = false
+        }
         
         // delegate stuff
         navModel.delegate = self
@@ -142,11 +155,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             if let nextViewController = segue.destination as? TypeTableViewController {
                 nextViewController.delegate = self
             }
+        } else if segue.identifier == "goToFavTable" {
+            if let nextViewController = segue.destination as? FavoritesTableViewController {
+                nextViewController.delegate = self
+                var favorites = userMemory?.object(forKey: "favorites") as? [String]
+                if navModel.annotation != nil {
+                    favorites?.insert("create new", at: 0)
+                }
+                nextViewController.options = favorites
+            }
         }
     }
 }
 
 extension ViewController: NavigatorDelegate {
+    func annotationSet() {
+        favButton.isEnabled = true
+    }
+    
     func dataUpdated() {
         updateView()
         suggestLocationButton.isEnabled = true
@@ -157,6 +183,36 @@ extension ViewController: TypeTableDelegate {
     func typeUpdated(type: String) {
         self.type = type
         updateView()
+    }
+}
+
+extension ViewController: FavoritesTableDelegate {
+    func favoriteSelected(selection: String) {
+        let annotationData = self.userMemory?.object(forKey: "fav_"+selection) as? Data
+        let annotation = try? PropertyListDecoder().decode(AnnotationBasic.self, from: annotationData!)
+        
+        self.navModel.annotation = getAnnotationFromBasic(basic: annotation!)
+        self.navModel.name = selection
+        self.updateLocationName(name: selection)
+    }
+    
+    func favoritesUpdated(favorites: [String], newFav: String) {
+        let currDestination = navModel.annotation
+        let annotation = AnnotationBasic(latitude: (currDestination?.coordinate.latitude)!, longitude: (currDestination?.coordinate.longitude)!, name: newFav)
+        navModel.name = newFav
+        self.userMemory?.set(try? PropertyListEncoder().encode(annotation), forKey: "fav_"+newFav)
+        var newFavorites = favorites
+        newFavorites.remove(at: newFavorites.index(of: "create new")!) // don't add the create new to the favorites list
+        self.userMemory?.set(newFavorites, forKey: "favorites")
+    }
+    
+    func favoritesEmpty() {
+        self.userMemory?.set(nil, forKey: "favorites")
+        
+        // now to check if there is a destination
+        if navModel.annotation == nil {
+            favButton.isEnabled = false
+        }
     }
 }
 

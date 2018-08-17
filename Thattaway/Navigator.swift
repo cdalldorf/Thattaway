@@ -14,11 +14,17 @@ import GooglePlaces
 
 protocol NavigatorDelegate: class {
     func dataUpdated()
+    func annotationSet()
 }
 
 class Navigator {
     var error : NSError!
-    var annotation : MKPointAnnotation?
+    var annotation : MKPointAnnotation? {
+        didSet{
+            delegate?.annotationSet()
+            location = CLLocation(latitude: (annotation?.coordinate.latitude)!, longitude: (annotation?.coordinate.longitude)!)
+        }
+    }
     var latitude = 0.0
     var longitude = 0.0
     var bearing = 0.0
@@ -27,8 +33,6 @@ class Navigator {
     var likelyPlaces: [GMSPlace] = []
     var name = " "
     weak var delegate : NavigatorDelegate?
-    
-    
     var location : CLLocation? {
         didSet{
             latitude = (location?.coordinate.latitude)!
@@ -40,25 +44,6 @@ class Navigator {
     var initDistance : Double?
     var bestLocation : CLLocation?
     
-    
-    // unsure what this was used for, I think before I used google places
-    /*private func findBestLocation(near location: CLLocation) {
-        let request = MKLocalSearchRequest()
-        let coorSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-        request.region = MKCoordinateRegion(center: location.coordinate, span: coorSpan)
-        //request.naturalLanguageQuery = "Restaurant"
-        let search = MKLocalSearch(request: request)
-        search.start {
-            (response: MKLocalSearchResponse!, error: Error?) in
-            
-            for item in response.mapItems {
-                print(item.name ?? "didn't find")
-                
-                //println("Latitude = \(item.placemark.location.coordinate.latitude)")
-                //println("Longitude = \(item.placemark.location.coordinate.longitude)")
-            }
-        }
-    }*/
     
     func getDistance(destination: CLLocation) -> Double {
         let latDiff = destination.coordinate.latitude - latitude
@@ -95,6 +80,8 @@ class Navigator {
             var maxIndex = -1
             self.changed = false
             for index in self.likelyPlaces.indices {
+                
+                // TODO implement open now status
                 if (typeRequested == "any" || self.likelyPlaces[index].types.contains(typeRequested)) {
                     if (self.likelyPlaces[index].rating > maxRating) && !(self.likelyPlaces[index].coordinate.latitude == self.latitude && self.likelyPlaces[index].coordinate.longitude == self.longitude) {
                         maxRating = self.likelyPlaces[index].rating
@@ -103,6 +90,7 @@ class Navigator {
                 }
             }
             
+            // if a max rated exists that's different, set as new destination
             if maxIndex != -1 {
                 self.changed = true
                 self.location = CLLocation(latitude: self.likelyPlaces[maxIndex].coordinate.latitude, longitude: self.likelyPlaces[maxIndex].coordinate.longitude)

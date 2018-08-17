@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		25A59DB5FA352FB9661EC7D2 /* libPods-Thattaway.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 022CE19F6470C61D2938F2D5 /* libPods-Thattaway.a */; };
+		5F09733F2127248A00C3B4F3 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09733E2127248A00C3B4F3 /* FavoritesTableViewController.swift */; };
+		5F0973412127329900C3B4F3 /* AnnotationBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0973402127329900C3B4F3 /* AnnotationBasic.swift */; };
 		5F71D1FA20DA061A007D16E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F71D1F920DA061A007D16E6 /* AppDelegate.swift */; };
 		5F71D1FC20DA061A007D16E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F71D1FB20DA061A007D16E6 /* ViewController.swift */; };
 		5F71D1FF20DA061A007D16E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F71D1FD20DA061A007D16E6 /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 		022CE19F6470C61D2938F2D5 /* libPods-Thattaway.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Thattaway.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		444C32A4FBD072D8ECB103A5 /* Pods-Thattaway.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thattaway.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Thattaway/Pods-Thattaway.debug.xcconfig"; sourceTree = "<group>"; };
 		50EDC951AFD2F56C1CFB3414 /* Pods-Thattaway.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thattaway.release.xcconfig"; path = "Pods/Target Support Files/Pods-Thattaway/Pods-Thattaway.release.xcconfig"; sourceTree = "<group>"; };
+		5F09733E2127248A00C3B4F3 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		5F0973402127329900C3B4F3 /* AnnotationBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationBasic.swift; sourceTree = "<group>"; };
 		5F71D1F620DA061A007D16E6 /* Thattaway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thattaway.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F71D1F920DA061A007D16E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F71D1FB20DA061A007D16E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,9 +103,11 @@
 				5F71D21920DA0721007D16E6 /* Arrow.swift */,
 				5F71D1FB20DA061A007D16E6 /* ViewController.swift */,
 				5FB8A15F20DA7B33004A7EAE /* Navigator.swift */,
+				5F0973402127329900C3B4F3 /* AnnotationBasic.swift */,
 				5FB8A16120DA8A8E004A7EAE /* MapViewController.swift */,
 				5FB8A16320DA8DDD004A7EAE /* LocationSearchTable.swift */,
 				5F88B632210639D20059E249 /* TypeTableViewController.swift */,
+				5F09733E2127248A00C3B4F3 /* FavoritesTableViewController.swift */,
 				5F71D20520DA061C007D16E6 /* Info.plist */,
 				5F71D20020DA061C007D16E6 /* Assets.xcassets */,
 			);
@@ -292,7 +298,9 @@
 				5F71D1FC20DA061A007D16E6 /* ViewController.swift in Sources */,
 				5FB8A16020DA7B33004A7EAE /* Navigator.swift in Sources */,
 				5F71D1FA20DA061A007D16E6 /* AppDelegate.swift in Sources */,
+				5F09733F2127248A00C3B4F3 /* FavoritesTableViewController.swift in Sources */,
 				5FB8A16420DA8DDD004A7EAE /* LocationSearchTable.swift in Sources */,
+				5F0973412127329900C3B4F3 /* AnnotationBasic.swift in Sources */,
 				5FB8A16220DA8A8E004A7EAE /* MapViewController.swift in Sources */,
 				5F71D21A20DA0721007D16E6 /* Arrow.swift in Sources */,
 				5F88B633210639D20059E249 /* TypeTableViewController.swift in Sources */,

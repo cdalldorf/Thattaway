@@ -67,17 +67,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3Y-JH-yUT">
+                                <rect key="frame" x="15" y="577" width="59" height="30"/>
+                                <state key="normal" title="favorites"/>
+                                <connections>
+                                    <segue destination="uWl-nA-IzY" kind="popoverPresentation" identifier="goToFavTable" popoverAnchorView="D3Y-JH-yUT" id="GBg-qM-Its">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Cgi-3p-bXI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="0Bm-X0-3DN"/>
+                            <constraint firstItem="Cgi-3p-bXI" firstAttribute="top" secondItem="D3Y-JH-yUT" secondAttribute="bottom" constant="15" id="0SE-bw-ma3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tjk-4N-D8Y" secondAttribute="bottom" constant="15" id="0m6-wK-dQi"/>
                             <constraint firstItem="iCm-aV-y3H" firstAttribute="top" relation="greaterThanOrEqual" secondItem="F9s-pJ-Cvr" secondAttribute="bottom" constant="15" id="3kA-U1-iPu"/>
                             <constraint firstItem="YeI-Xl-ZIK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="5jZ-5c-o3D"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iCm-aV-y3H" secondAttribute="trailing" constant="25" id="Gqt-bo-fkT"/>
                             <constraint firstItem="iCm-aV-y3H" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="KUb-iG-Rpn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="D3Y-JH-yUT" secondAttribute="trailing" constant="15" id="N4e-1z-h3I"/>
                             <constraint firstItem="nrV-Ja-ApS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="Vq4-Rs-4Ux"/>
                             <constraint firstItem="iCm-aV-y3H" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="W9e-cg-ZJL"/>
+                            <constraint firstItem="D3Y-JH-yUT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="YZh-Fj-Dp4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tjk-4N-D8Y" secondAttribute="trailing" constant="15" id="bg5-EX-qL2"/>
                             <constraint firstItem="iCm-aV-y3H" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="dIg-Zj-50r"/>
                             <constraint firstItem="F9s-pJ-Cvr" firstAttribute="top" secondItem="YeI-Xl-ZIK" secondAttribute="bottom" constant="15" id="eAf-YT-KLm"/>
@@ -98,6 +110,7 @@
                     <navigationItem key="navigationItem" title="Follow the Arrow" id="yIN-4Z-cMK"/>
                     <connections>
                         <outlet property="arrowView" destination="iCm-aV-y3H" id="dhu-5G-QHF"/>
+                        <outlet property="favButton" destination="D3Y-JH-yUT" id="rb4-Wt-9bc"/>
                         <outlet property="foundPlaceLabel" destination="hC2-Sr-IjR" id="ebe-ZP-eKB"/>
                         <outlet property="nameSwitch" destination="F9s-pJ-Cvr" id="EU2-a3-N93"/>
                         <outlet property="suggestLocationButton" destination="tjk-4N-D8Y" id="h4f-wN-nif"/>
@@ -140,6 +153,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pFc-Z1-ZBx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1747.5" y="53.5"/>
+        </scene>
+        <!--Favorites Table View Controller-->
+        <scene sceneID="fSe-uL-0Gq">
+            <objects>
+                <tableViewController id="uWl-nA-IzY" customClass="FavoritesTableViewController" customModule="Thattaway" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="exL-1e-gTQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="GVH-jp-Xaw">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GVH-jp-Xaw" id="moB-SX-jpw">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uWl-nA-IzY" id="OOE-pk-4dq"/>
+                            <outlet property="delegate" destination="uWl-nA-IzY" id="4rV-9m-J0m"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ITa-ml-DB7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="971" y="917"/>
         </scene>
         <!--Type Table View Controller-->
         <scene sceneID="PFm-EH-EVN">
