@@ -9,46 +9,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Thattaway/FavoritesTableViewController.swift"
-            timestampString = "556222094.424395"
+            filePath = "Thattaway/ViewController.swift"
+            timestampString = "556298415.5090179"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "favoritesUpdated(favorites:newFav:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (__ObjC.UIAlertAction) -&gt; () in Thattaway.FavoritesTableViewController.tableView(__ObjC.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "Thattaway"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cdalldorf/Developer/self-taught/Thattaway/Thattaway/FavoritesTableViewController.swift"
-                  timestampString = "556222094.59613"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "512">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (__ObjC.UIAlertAction) -&gt; () in Thattaway.FavoritesTableViewController.tableView(__ObjC.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "Thattaway"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cdalldorf/Developer/self-taught/Thattaway/Thattaway/FavoritesTableViewController.swift"
-                  timestampString = "556222094.599081"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "4104">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

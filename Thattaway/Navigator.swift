@@ -38,7 +38,6 @@ class Navigator {
             latitude = (location?.coordinate.latitude)!
             longitude = (location?.coordinate.longitude)!
             initDistance = nil
-            //findBestLocation(near: location!)
         }
     }
     var initDistance : Double?
@@ -97,6 +96,7 @@ class Navigator {
                 self.name = self.likelyPlaces[maxIndex].name
                 self.annotation?.coordinate = CLLocationCoordinate2D(latitude: self.location!.coordinate.latitude, longitude: self.location!.coordinate.longitude)
                 self.annotation?.title = self.name
+                self.delegate?.annotationSet()
             }
             
             self.delegate?.dataUpdated()

@@ -158,9 +158,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         } else if segue.identifier == "goToFavTable" {
             if let nextViewController = segue.destination as? FavoritesTableViewController {
                 nextViewController.delegate = self
-                var favorites = userMemory?.object(forKey: "favorites") as? [String]
-                if navModel.annotation != nil {
-                    favorites?.insert("create new", at: 0)
+                var favorites = userMemory?.object(forKey: "favorites") as? [String] ?? [String]()
+                if navModel.location != nil {
+                    favorites.insert("create new", at: 0)
+                    // TODO: this for some reason isn't actually inserting it and creates an empty list
                 }
                 nextViewController.options = favorites
             }
@@ -197,8 +198,7 @@ extension ViewController: FavoritesTableDelegate {
     }
     
     func favoritesUpdated(favorites: [String], newFav: String) {
-        let currDestination = navModel.annotation
-        let annotation = AnnotationBasic(latitude: (currDestination?.coordinate.latitude)!, longitude: (currDestination?.coordinate.longitude)!, name: newFav)
+        let annotation = AnnotationBasic(latitude: navModel.latitude, longitude: navModel.longitude, name: newFav)
         navModel.name = newFav
         self.userMemory?.set(try? PropertyListEncoder().encode(annotation), forKey: "fav_"+newFav)
         var newFavorites = favorites
