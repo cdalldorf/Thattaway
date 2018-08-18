@@ -148,8 +148,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 nextViewController.location = self.location!
                 nextViewController.annotation = self.navModel.annotation
                 nextViewController.delegate = self
-                
-                // TODO fully change to delegate stuff
             }
         } else if segue.identifier == "goToTypeSelection" {
             if let nextViewController = segue.destination as? TypeTableViewController {
@@ -161,7 +159,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 var favorites = userMemory?.object(forKey: "favorites") as? [String] ?? [String]()
                 if navModel.location != nil {
                     favorites.insert("create new", at: 0)
-                    // TODO: this for some reason isn't actually inserting it and creates an empty list
                 }
                 nextViewController.options = favorites
             }

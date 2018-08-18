@@ -67,7 +67,7 @@ class FavoritesTableViewController: UITableViewController {
                     self.dismiss(animated: true, completion: nil)
                 } else {
                     let newAlert = UIAlertController(title: "You can't pick that name!", message: "pick a differet name", preferredStyle: .alert)
-                    newAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak newAlert] (_) in
+                    newAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
                         self.dismiss(animated: true, completion: nil)
                     }))
                     self.present(newAlert, animated: true, completion: nil)
